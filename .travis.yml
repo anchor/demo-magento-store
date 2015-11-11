@@ -1,7 +1,7 @@
 script:
 - echo 'Cool tests go here.'
 after_success:
-- tar czf ${TRAVIS_COMMIT}.tar.gz .
+- "mkdir build && tar czf build/${TRAVIS_COMMIT}.tar.gz ."
 deploy:
   provider: s3
   access_key_id:
@@ -9,8 +9,7 @@ deploy:
   secret_access_key:
     secure: szR5Gawx3633Wjc0yN8x5TQwvHxSSS4/S/Yyq2iOj7sUsXaW69Yv4tmYkjLiilzGFtVCRxAQLiJxsniePGSEycTXUUudGYGCqFcrVhWMS822YsUVRGTU1DMXNeSdzMozYSdQrOj+boBlio+vGk/ITtf5doMAqzHYJRvGl1Xfhk9x5YZsGtq02ffWU1FXbGwlI94+9P/pmU1V6dQWRuJmVBSiBl4/Lnbfq1D8DNIbDoFtOh0iy59G1iH0TRGneMETeg/gNJd8QYAjN1GECQNdWJI81egbq5gBgEb1lXbaDMDIFOtU2oK80FUoXJUufIEf10YMe2Pdmu9NtPgk3VyIXg+BmPNV4dWGoizQghn80xPRPHl5vTdzKz9vTBVqa1NmNQrFHI00FiwPCR63obSYRiZI6hlYmju8uVgrlmWMH2rIVtVzn1nEc5Ymbiiycya2+O9YARspQXgQG5Pql2tecRl4KYowjhwqst3DsbqZJOQb93e+EkIO7eJ48ZCg5RYXI5IFe79OtTflXzoXwrYP4eO8/llL/16paGPI0b+xCkXc2mJj5/fZ9OQPsSEf4gP+7zIRg5UgHj1kHgRH4NLjRHK1PNVjXOe/OW1RqhYhjoTD884KxI/uCtX1hB0Lp6ChZRcqk8hnDFrK+LgGfByCeE6xANUsUsZKJsBe1MJavrA=
   bucket: "fleet-demo-ci"
-  file:
-  - ${TRAVIS_COMMIT}.tar.gz
+  local_dir: build
   acl: public_read
   skip_cleanup: true
   on:
