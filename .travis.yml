@@ -1,0 +1,10 @@
+script:
+ - "echo 'Cool tests go here.'"
+after_success:
+ - "tar czf ${TRAVIS_COMMIT}.tar.gz ."
+addons:
+  s3_region: "ap-southeast-2"
+  artifacts:
+    debug: true
+    paths:
+     - "${TRAVIS_COMMIT}.tar.gz"
