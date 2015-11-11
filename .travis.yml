@@ -1,7 +1,7 @@
 script:
 - echo 'Cool tests go here.'
 after_success:
-- "mkdir build && tar czf --exclude build build/${TRAVIS_COMMIT}.tar.gz ."
+- "mkdir build && git archive --format=tar.gz -o build/${TRAVIS_COMMIT}.tar.gz ${TRAVIS_COMMIT}"
 deploy:
   provider: s3
   access_key_id:
